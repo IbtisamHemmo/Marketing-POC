@@ -98,7 +98,8 @@ export default async function HomePage() {
   const data = await getPageData();
   const { hero, about, features, testimonials, banner, contact, siteSettings } =
     data;
-
+console.log('Hero title from Sanity:', data.hero?.title)
+console.log('Full data:', JSON.stringify(data, null, 2))
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
