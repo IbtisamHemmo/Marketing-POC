@@ -1,5 +1,6 @@
-// schemas/hero.js
-export const hero ={
+/* eslint-disable @typescript-eslint/no-explicit-any */
+// schemas.ts
+export const hero = {
   name: 'hero',
   title: 'Hero Section',
   type: 'document',
@@ -8,7 +9,7 @@ export const hero ={
       name: 'title',
       title: 'Hero Title',
       type: 'string',
-      validation: Rule => Rule.required()
+      validation: (Rule: any) => Rule.required()
     },
     {
       name: 'subtitle',
@@ -49,8 +50,7 @@ export const hero ={
   ]
 }
 
-// schemas/about.js
-export const about= {
+export const about = {
   name: 'about',
   title: 'About Section',
   type: 'document',
@@ -59,7 +59,7 @@ export const about= {
       name: 'title',
       title: 'About Title',
       type: 'string',
-      validation: Rule => Rule.required()
+      validation: (Rule: any) => Rule.required()
     },
     {
       name: 'description',
@@ -85,7 +85,6 @@ export const about= {
   ]
 }
 
-// schemas/features.js
 export const features = {
   name: 'features',
   title: 'Features Section',
@@ -95,7 +94,7 @@ export const features = {
       name: 'title',
       title: 'Features Title',
       type: 'string',
-      validation: Rule => Rule.required()
+      validation: (Rule: any) => Rule.required()
     },
     {
       name: 'subtitle',
@@ -114,7 +113,7 @@ export const features = {
               name: 'title',
               title: 'Feature Title',
               type: 'string',
-              validation: Rule => Rule.required()
+              validation: (Rule: any) => Rule.required()
             },
             {
               name: 'description',
@@ -135,7 +134,6 @@ export const features = {
   ]
 }
 
-// schemas/testimonials.js
 export const testimonials = {
   name: 'testimonials',
   title: 'Testimonials Section',
@@ -145,7 +143,7 @@ export const testimonials = {
       name: 'title',
       title: 'Testimonials Title',
       type: 'string',
-      validation: Rule => Rule.required()
+      validation: (Rule: any) => Rule.required()
     },
     {
       name: 'subtitle',
@@ -164,7 +162,7 @@ export const testimonials = {
               name: 'name',
               title: 'Customer Name',
               type: 'string',
-              validation: Rule => Rule.required()
+              validation: (Rule: any) => Rule.required()
             },
             {
               name: 'role',
@@ -181,13 +179,13 @@ export const testimonials = {
               title: 'Testimonial Content',
               type: 'text',
               rows: 3,
-              validation: Rule => Rule.required()
+              validation: (Rule: any) => Rule.required()
             },
             {
               name: 'rating',
               title: 'Rating (1-5 stars)',
               type: 'number',
-              validation: Rule => Rule.min(1).max(5)
+              validation: (Rule: any) => Rule.min(1).max(5)
             },
             {
               name: 'image',
@@ -211,8 +209,7 @@ export const testimonials = {
   ]
 }
 
-// schemas/banner.js
-export const banner= {
+export const banner = {
   name: 'banner',
   title: 'Banner/Carousel Section',
   type: 'document',
@@ -285,7 +282,8 @@ export const banner= {
       subtitle: 'bannerType',
       media: 'images.0'
     },
-    prepare({ title, subtitle, media }) {
+    prepare(selection: any) {
+      const { title, subtitle, media } = selection
       return {
         title: title || 'Banner Section',
         subtitle: `${subtitle || 'simple'} banner`,
@@ -295,8 +293,7 @@ export const banner= {
   }
 }
 
-// schemas/contact.js
-export const contact= {
+export const contact = {
   name: 'contact',
   title: 'Contact Section',
   type: 'document',
@@ -305,7 +302,7 @@ export const contact= {
       name: 'title',
       title: 'Contact Title',
       type: 'string',
-      validation: Rule => Rule.required()
+      validation: (Rule: any) => Rule.required()
     },
     {
       name: 'description',
@@ -317,7 +314,7 @@ export const contact= {
       name: 'email',
       title: 'Email Address',
       type: 'string',
-      validation: Rule => Rule.email()
+      validation: (Rule: any) => Rule.email()
     },
     {
       name: 'phone',
@@ -333,7 +330,6 @@ export const contact= {
   ]
 }
 
-// schemas/siteSettings.js
 export const siteSettings = {
   name: 'siteSettings',
   title: 'Site Settings',
@@ -343,7 +339,7 @@ export const siteSettings = {
       name: 'siteName',
       title: 'Site Name',
       type: 'string',
-      validation: Rule => Rule.required()
+      validation: (Rule: any) => Rule.required()
     },
     {
       name: 'logo',
@@ -369,8 +365,8 @@ export const siteSettings = {
   ]
 }
 
-
-export const schemaTypes = [
+// Assign to variable before exporting (fixes ESLint error)
+const schemaTypes = [
   hero,
   about,
   features,
@@ -379,3 +375,5 @@ export const schemaTypes = [
   contact,
   siteSettings
 ]
+
+export default schemaTypes
