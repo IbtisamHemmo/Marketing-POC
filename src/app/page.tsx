@@ -358,7 +358,7 @@ export default async function HomePage() {
                       ))}
                     </div>
                   )}
-                  <p className="text-gray-700 italic">"{testimonial.content}"</p>
+                  <p className="text-gray-700 italic">`{testimonial.content}`</p>
                 </div>
               ))}
             </div>
