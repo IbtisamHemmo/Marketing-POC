@@ -1,6 +1,7 @@
 import { client } from "@/lib/sanity";
 import Image from "next/image";
 import Link from "next/link";
+export const dynamic = 'force-dynamic'
 
 async function getPageData() {
   const query = `{
@@ -95,11 +96,10 @@ async function getPageData() {
 }
 
 export default async function HomePage() {
-  const data = await getPageData();
+  const data = await getPageData()
   const { hero, about, features, testimonials, banner, contact, siteSettings } =
     data;
-console.log('Hero title from Sanity:', data.hero?.title)
-console.log('Full data:', JSON.stringify(data, null, 2))
+
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
